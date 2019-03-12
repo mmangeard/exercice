@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+	{{parent()}} - Liste des offres
+{% endblock %}
+
+{% block gsbobjcom_body %}
+	<h2>Liste des offres</h2>
+	<ul>
+		{% for uneOffre in lesOffres %}
+		<li>
+			{# Déclaration de la variable id_modif pour la passer d'URL #}
+			{% set id_modif='/offre/edit/' ~ uneOffre.id %}
+
+			<p>{{uneOffre.title}}
+			<a href={{id_modif}} class="btn btn-default"><i class="glyphicon glyphicon-edit"></i> Modifier</a>&nbsp;&nbsp;
+
+
+			{# Déclaration de la variable id_suppress pour la passer d'URL #}
+			{% set id_suppress='/offre/delete/' ~ uneOffre.id %}
+			<a href={{id_suppress}} class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></p>
+		</li>
+		{% else %}
+		<li>Pas d'offres enregistré</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

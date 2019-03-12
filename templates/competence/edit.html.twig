@@ -1,0 +1,14 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+	{{parent()}} - Modification d'une compétence
+{% endblock %}
+
+{% block gsbobjcom_body %}
+	<h2>Modification de la compétence numéro {{competence.id}}</h2>
+	{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+	{{ form_widget(form) }}
+	{{ form_end(form) }}
+
+	<a href="/competence/list">Annulation de la modification : Retour au compétences</a>
+{% endblock %}

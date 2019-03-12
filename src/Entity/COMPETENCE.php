@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CONTRATRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\COMPETENCERepository")
  */
-class CONTRAT
+class COMPETENCE
 {
     /**
      * @ORM\Id()
@@ -26,13 +26,13 @@ class CONTRAT
     private $lastName;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\OFFRE", mappedBy="idContrat")
+     * @ORM\ManyToMany(targetEntity="App\Entity\OFFRE", mappedBy="competences")
      */
-    private $offres;
+    private $oFFREs;
 
     public function __construct()
     {
-        $this->offres = new ArrayCollection();
+        $this->oFFREs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -55,29 +55,26 @@ class CONTRAT
     /**
      * @return Collection|OFFRE[]
      */
-    public function getOffres(): Collection
+    public function getOFFREs(): Collection
     {
-        return $this->offres;
+        return $this->oFFREs;
     }
 
-    public function addOffre(OFFRE $offre): self
+    public function addOFFRE(OFFRE $oFFRE): self
     {
-        if (!$this->offres->contains($offre)) {
-            $this->offres[] = $offre;
-            $offre->setCONTRAT($this);
+        if (!$this->oFFREs->contains($oFFRE)) {
+            $this->oFFREs[] = $oFFRE;
+            $oFFRE->addCompetence($this);
         }
 
         return $this;
     }
 
-    public function removeOffre(OFFRE $offre): self
+    public function removeOFFRE(OFFRE $oFFRE): self
     {
-        if ($this->offres->contains($offre)) {
-            $this->offres->removeElement($offre);
-            // set the owning side to null (unless already changed)
-            if ($offre->getCONTRAT() === $this) {
-                $offre->setCONTRAT(null);
-            }
+        if ($this->oFFREs->contains($oFFRE)) {
+            $this->oFFREs->removeElement($oFFRE);
+            $oFFRE->removeCompetence($this);
         }
 
         return $this;

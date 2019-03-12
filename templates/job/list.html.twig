@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+	{{parent()}} - Liste des jobs
+{% endblock %}
+
+{% block gsbobjcom_body %}
+	<h2>Liste des jobs</h2>
+	<ul>
+		{% for unJob in lesJobs %}
+		<li>
+			{# Déclaration de la variable id_modif pour la passer d'URL #}
+			{% set id_modif='/job/edit/' ~ unJob.id %}
+
+			<p>{{unJob.lastName}}
+			<a href={{id_modif}} class="btn btn-default"><i class="glyphicon glyphicon-edit"></i> Modifier</a>&nbsp;&nbsp;
+
+
+			{# Déclaration de la variable id_suppress pour la passer d'URL #}
+			{% set id_suppress='/job/delete/' ~ unJob.id %}
+			<a href={{id_suppress}} class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></p>
+		</li>
+		{% else %}
+		<li>Pas de jobs enregistré</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

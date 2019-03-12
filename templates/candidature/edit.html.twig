@@ -1,0 +1,14 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+	{{parent()}} - Modification d'une candidature
+{% endblock %}
+
+{% block gsbobjcom_body %}
+	<h2>Modification de la candidature numéro {{candidature.id}} concernant {{candidature.lastName}} {{candidature.firstName}}</h2>
+	{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+	{{ form_widget(form) }}
+	{{ form_end(form) }}
+
+	<a href="/candidature/list">Annulation de la modification : Retour au candidatures</a>
+{% endblock %}

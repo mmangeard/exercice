@@ -1,0 +1,14 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+	{{parent()}} - Modification d'un contrat
+{% endblock %}
+
+{% block gsbobjcom_body %}
+	<h2>Modification du contrat numéro {{contrat.id}}</h2>
+	{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+	{{ form_widget(form) }}
+	{{ form_end(form) }}
+
+	<a href="/contrat/list">Annulation de la modification : Retour au contrats</a>
+{% endblock %}

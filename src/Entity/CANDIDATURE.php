@@ -2,7 +2,10 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CANDIDATURERepository")
@@ -17,50 +20,66 @@ class CANDIDATURE
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
-    private $nom;
+    private $firstName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
      */
-    private $prenom;
+    private $lastName;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Email
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text", nullable=false)
+     * @Assert\NotBlank
      */
     private $cv;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\OFFRE", inversedBy="candidatures")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $idOffre;
+
+    public function __construct()
+    {
+        $this->offres = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getNom(): ?string
+    public function getFirstName(): ?string
     {
-        return $this->nom;
+        return $this->firstName;
     }
 
-    public function setNom(string $nom): self
+    public function setFirstName(string $firstName): self
     {
-        $this->nom = $nom;
+        $this->firstName = $firstName;
 
         return $this;
     }
 
-    public function getPrenom(): ?string
+    public function getLastName(): ?string
     {
-        return $this->prenom;
+        return $this->lastName;
     }
 
-    public function setPrenom(string $prenom): self
+    public function setLastName(string $lastName): self
     {
-        $this->prenom = $prenom;
+        $this->lastName = $lastName;
 
         return $this;
     }
@@ -85,6 +104,18 @@ class CANDIDATURE
     public function setCv(string $cv): self
     {
         $this->cv = $cv;
+
+        return $this;
+    }
+
+    public function getIdOffre(): ?OFFRE
+    {
+        return $this->idOffre;
+    }
+
+    public function setIdOffre(?OFFRE $idOffre): self
+    {
+        $this->idOffre = $idOffre;
 
         return $this;
     }

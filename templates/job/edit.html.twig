@@ -1,0 +1,14 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+	{{parent()}} - Modification d'un job
+{% endblock %}
+
+{% block gsbobjcom_body %}
+	<h2>Modification du job numéro {{job.id}}</h2>
+	{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+	{{ form_widget(form) }}
+	{{ form_end(form) }}
+
+	<a href="/job/list">Annulation de la modification : Retour au jobs</a>
+{% endblock %}

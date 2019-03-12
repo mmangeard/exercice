@@ -1,12 +1,64 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}Exercice PHP {% endblock %}</title>
+        {% block stylesheet %}
+        {# On charge le CSS de bootstrap depuis le site directement #}
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div class="container">
+            <div id="header" class="jumbotron">
+                <h2>Exercice PHP</h2>
+            </div>
+            <div class="row">
+                <div id="menu" class="col-md-4">
+                    <a class="btn btn-primary btn-lg" href="/">Accueil du projet</a>
+                    <hr>
+                    <h3>Offres</h3>
+                    <ul class="nav nav-pills nav-stacked">
+                         <li><a href="/offre/list">Liste des offres</a></li>
+                         <li><a href="/offre/new">Ajouter une offre</a></li>
+                    </ul>
+                    <hr>
+                    <h3>Candidatures</h3>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="/candidature/list">Liste des candidatures</a></li>
+                        <li><a href="/candidature/new">Ajouter une candidature</a></li>
+                    </ul>
+                    <hr>
+                    <h3>Contrats</h3>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="/contrat/list">Liste des contrats</a></li>
+                        <li><a href="/contrat/new">Ajouter un contrat</a></li>
+                    </ul>
+                    <hr>
+                    <h3>Jobs</h3>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="/job/list">Liste des jobs</a></li>
+                        <li><a href="/job/new">Ajouter un job</a></li>
+                    </ul>
+                    <hr>
+                    <h3>Compétences</h3>
+                    <ul class="nav nav-pills nav-stacked">
+                        <li><a href="/competence/list">Liste des compétences</a></li>
+                        <li><a href="/competence/new">Ajouter une compétence</a></li>
+                    </ul>
+                </div>
+                <div id="content" class="col-md-8">
+                    {% block body %} {% endblock %}
+                </div>
+            </div>
+            <hr>
+            <footer></footer>
+        </div>
+        {% block javascript %}
+            {# lignes JavaScript permettant d'utiliser des fonctionnalités du bootstrap Twitter #}
+            <script src="//ajax.gooleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+            <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+        {% endblock %}
     </body>
 </html>

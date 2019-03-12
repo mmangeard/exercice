@@ -1,0 +1,27 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+	{{parent()}} - Liste des compétences
+{% endblock %}
+
+{% block gsbobjcom_body %}
+	<h2>Liste des compétences</h2>
+	<ul>
+		{% for uneCompetence in lesCompetences %}
+		<li>
+			{# Déclaration de la variable id_modif pour la passer d'URL #}
+			{% set id_modif='/competence/edit/' ~ uneCompetence.id %}
+
+			<p>{{uneCompetence.lastName}}
+			<a href={{id_modif}} class="btn btn-default"><i class="glyphicon glyphicon-edit"></i> Modifier</a>&nbsp;&nbsp;
+
+
+			{# Déclaration de la variable id_suppress pour la passer d'URL #}
+			{% set id_suppress='/competence/delete/' ~ uneCompetence.id %}
+			<a href={{id_suppress}} class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i> Supprimer</a></p>
+		</li>
+		{% else %}
+		<li>Pas de compétences enregistré</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

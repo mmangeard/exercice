@@ -1,0 +1,14 @@
+{% extends "layout.html.twig" %}
+
+{% block title %}
+	{{parent()}} - Modification d'une offre
+{% endblock %}
+
+{% block gsbobjcom_body %}
+	<h2>Modification de l'offre numéro {{offre.id}} s'intitulant {{offre.title}}</h2>
+	{{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+	{{ form_widget(form) }}
+	{{ form_end(form) }}
+
+	<a href="/offre/list">Annulation de la modification : Retour aux offres</a>
+{% endblock %}
